@@ -2,34 +2,32 @@
 {
     public interface INotificador
     {
-        void AdicionarNotificacao(string mensagem);
-        void AdicionarNotificacao(IEnumerable<string> mensagens);
+        void AdicionarNotificacao(string notificacao);
+        void AdicionarNotificacao(IEnumerable<string> notificacoes);
         bool TemNotificacoes();
-        IEnumerable<Notificacao> ObterNotificacoes();
+        IEnumerable<string> ObterNotificacoes();
     }
 
     public class Notificador : INotificador
     {
-        private readonly List<Notificacao> _notificacoes;
+        private readonly List<string> _notificacoes;
 
         public Notificador()
         {
             _notificacoes = new();
         }
 
-        public void AdicionarNotificacao(string mensagem)
+        public void AdicionarNotificacao(string notificacao)
         {
-            _notificacoes.Add(new Notificacao(mensagem));
+            _notificacoes.Add(notificacao);
         }
-        public void AdicionarNotificacao(IEnumerable<string> mensagens)
+        public void AdicionarNotificacao(IEnumerable<string> notificacoes)
         {
-            List<Notificacao> notificacoes = new();
-            foreach (var mensagem in mensagens) notificacoes.Add(new Notificacao(mensagem));
             _notificacoes.AddRange(notificacoes);
         }
 
         public bool TemNotificacoes() => _notificacoes.Any();
 
-        public IEnumerable<Notificacao> ObterNotificacoes() => _notificacoes;
+        public IEnumerable<string> ObterNotificacoes() => _notificacoes;
     }
 }

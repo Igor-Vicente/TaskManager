@@ -84,6 +84,6 @@ namespace TaskManager.Presentation.Controllers
         private IActionResult BadRequestResponse(ModelStateDictionary modelState) =>
             new BadRequestObjectResult(new { Sucesso = false, Erros = modelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage) });
         private IActionResult BadRequestResponse(INotificador notificador) =>
-            new BadRequestObjectResult(new { Sucesso = false, Erros = notificador.ObterNotificacoes().Select(x => x.Mensagem) });
+            new BadRequestObjectResult(new { Sucesso = false, Erros = notificador.ObterNotificacoes() });
     }
 }
