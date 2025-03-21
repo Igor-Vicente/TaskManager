@@ -6,7 +6,7 @@ using TaskManager.Domain.Repositories;
 
 namespace TaskManager.Application.Commands
 {
-    public class TarefaCommandHandler : IRequestHandler<AdicionarTarefaCommand, Tarefa>,
+    public sealed class TarefaCommandHandler : IRequestHandler<AdicionarTarefaCommand, Tarefa>,
                                         IRequestHandler<AtualizarTarefaCommand, Tarefa>,
                                         IRequestHandler<RemoverTarefaCommand, Tarefa>
     {

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.Application.Commands;
 using TaskManager.Application.Queries;
@@ -15,6 +16,7 @@ namespace TaskManager.Presentation.Configuration
         public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(configuration.GetConnectionString("Default")));
+
             return services;
         }
 
@@ -30,6 +32,28 @@ namespace TaskManager.Presentation.Configuration
             services.AddScoped<INotificador, Notificador>();
 
             services.AddScoped<ITarefaRepository, TarefaRepository>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddCorsPolicy(this IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Development", policy =>
+                {
+                    policy.AllowAnyOrigin();
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                });
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection AddModelStateBehavior(this IServiceCollection services)
+        {
+            services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
 
             return services;
         }
