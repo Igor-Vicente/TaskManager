@@ -4,6 +4,7 @@ import "./index.css";
 import { App } from "./App.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
+import { config } from "./config/index.ts";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -12,6 +13,9 @@ export const queryClient = new QueryClient({
     },
   },
 });
+
+/* REMOVE LATER */
+console.log(config.backend_domain);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

@@ -20,6 +20,7 @@ namespace TaskManager.Presentation
 
             app.UseMiddleware<MiddlewareException>();
             app.UseCors(app.Environment.EnvironmentName);
+            app.ApplyMigrations();
             app.UseSwagger();
             app.UseSwaggerUI();
             app.UseHttpsRedirection();

@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  sqlserver:
+    container_name: Task-Manager-DB
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      MSSQL_SA_PASSWORD: "Sqlserver@2025"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    networks:
+      - taskmanager-network
+
+  backend:
+    container_name: Task-Manager-API
+    build:
+      context: ../src
+      dockerfile: ./TaskManager.Presentation/Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://+:90
+      - ConnectionStrings__Default=Server=sqlserver,1433;Database=TaskManager;User ID=sa;Password=Sqlserver@2025;TrustServerCertificate=True;
+    ports:
+      - "8887:90"
+    depends_on:
+      - sqlserver
+    networks:
+      - taskmanager-network
+
+  client:
+    container_name: Task-Manager-SPA
+    build:
+      context: ../src/TaskManager.Client
+      dockerfile: ./Dockerfile
+      args:
+        VITE_BACKEND_DOMAIN: "http://localhost:8887"
+    restart: always
+    ports:
+      - "8888:80"
+    networks:
+      - taskmanager-network
+
+networks:
+  taskmanager-network:
+    driver: bridge

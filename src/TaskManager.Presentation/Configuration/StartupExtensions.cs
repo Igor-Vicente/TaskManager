@@ -46,6 +46,13 @@ namespace TaskManager.Presentation.Configuration
                     policy.AllowAnyHeader();
                     policy.AllowAnyMethod();
                 });
+
+                options.AddPolicy("Production", policy =>
+                {
+                    policy.AllowAnyOrigin();
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                });
             });
 
             return services;
