@@ -46,7 +46,7 @@ namespace TaskManager.Application.Tests.Queries
                 new Tarefa("b", null)
             };
 
-            _repositoryMock.Setup(s => s.ObterTodosAsync(index, size)).ReturnsAsync(tarefas);
+            _repositoryMock.Setup(s => s.ObterTodosAsync(index, size, null)).ReturnsAsync(tarefas);
 
             //act
             var result = await _queries.ObterTarefasAsync(index, size);

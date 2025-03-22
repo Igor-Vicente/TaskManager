@@ -1,54 +1,66 @@
-# React + TypeScript + Vite
+# Task Manager - Frontend Setup
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Instructions for running the Task Manager frontend application locally.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before running the frontend, ensure you have the following installed:
 
-## Expanding the ESLint configuration
+- **Node.js (Required):** - [Node.js Installation Guide](https://nodejs.org/en/download/) (npm is included with Node.js)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+#### Node Version Manager (nvm):
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+If you need to manage multiple Node.js versions, nvm is highly recommended.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- [nvm Installation Guide](https://github.com/nvm-sh/nvm#installing-and-updating) (for macOS/Linux)
+- [nvm-windows Installation Guide](https://github.com/coreybutler/nvm-windows) (for Windows)
+  Markdown
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## `.env` File Configuration
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Before running the frontend, you need to create a `.env` file in the root of the `/src/TaskManager.Client/` directory with the backend URL.
+
+1.  **Create the `.env` file:**
+
+    - In the root of the `/src/TaskManager.Client/` directory, create a new file named `.env`.
+
+2.  **Add the backend URL:**
+
+    - Add the following line to the `.env` file:
+
+    ```
+    VITE_BACKEND_DOMAIN="https://localhost:7226"
+    ```
+
+    - If your backend is running on a different port, adjust the URL accordingly.
+
+## Running the Frontend Locally
+
+1.  **Navigate to the Frontend Directory:**
+
+    - Open your terminal or command prompt and navigate to the `/src/TaskManager.Client/` directory of your project.
+
+    ```bash
+    cd src/TaskManager.Client/
+    ```
+
+2.  **Install Dependencies:**
+
+    - Run the following command to install the necessary npm packages:
+
+    ```bash
+    npm install
+    ```
+
+3.  **Start the Development Server:**
+
+    - Run the following command to start the development server. This will compile the frontend and open it in your default web browser.
+
+    ```bash
+    npm run dev
+    ```
+
+    - If the browser does not open automatically, look at your terminal output. It will show the local address where the app is running. Usually it is `http://localhost:5173/`.
+
+4.  **Access the Application:**
+    - Open your web browser and navigate to the URL provided in the terminal output (usually `http://localhost:5173/`).

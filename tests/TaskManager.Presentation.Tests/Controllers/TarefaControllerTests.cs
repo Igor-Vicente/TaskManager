@@ -68,14 +68,14 @@ namespace TaskManager.Presentation.Tests.Controllers
                 new Tarefa("w", null)
             };
 
-            _queriesMock.Setup(s => s.ObterTarefasAsync(1, 10)).ReturnsAsync(tarefas);
+            _queriesMock.Setup(s => s.ObterTarefasAsync(1, 20, null)).ReturnsAsync(tarefas);
 
             //act
             var result = await _controller.ObterTarefas();
 
             //assert
             result.Should().BeOfType<OkObjectResult>().Which.Value.Should().BeOfType<List<ResponseTarefaViewModel>>();
-            _queriesMock.Verify(s => s.ObterTarefasAsync(1, 10), Times.Once);
+            _queriesMock.Verify(s => s.ObterTarefasAsync(1, 20, null), Times.Once);
         }
 
         [Fact(DisplayName = "Adicionar tarefa válida")]

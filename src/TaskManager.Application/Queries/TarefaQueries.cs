@@ -1,4 +1,5 @@
 ﻿using TaskManager.Domain.Entities;
+using TaskManager.Domain.Enums;
 using TaskManager.Domain.Repositories;
 
 namespace TaskManager.Application.Queries
@@ -17,9 +18,9 @@ namespace TaskManager.Application.Queries
             return await _tarefaRepository.ObterPorIdAsync(id);
         }
 
-        public async Task<IEnumerable<Tarefa>> ObterTarefasAsync(int index = 1, int size = 10)
+        public async Task<IEnumerable<Tarefa>> ObterTarefasAsync(int index, int size, Status? status = null)
         {
-            return await _tarefaRepository.ObterTodosAsync(index, size);
+            return await _tarefaRepository.ObterTodosAsync(index, size, status);
         }
     }
 }

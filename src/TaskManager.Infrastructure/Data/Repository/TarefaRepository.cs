@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TaskManager.Domain.Abstractions;
 using TaskManager.Domain.Entities;
+using TaskManager.Domain.Enums;
 using TaskManager.Domain.Repositories;
 
 namespace TaskManager.Infrastructure.Data.Repository
@@ -33,12 +34,13 @@ namespace TaskManager.Infrastructure.Data.Repository
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<Tarefa>> ObterTodosAsync(int index, int size)
+        public async Task<IEnumerable<Tarefa>> ObterTodosAsync(int index, int size, Status? status = null)
         {
             return await _context.Tarefas
-                .AsNoTracking()
-                .Skip((index - 1) * size)
-                .Take(size).ToListAsync();
+                 .AsNoTracking()
+                 .Where(t => status == null || t.Status == status)
+                 .Skip((index - 1) * size)
+                 .Take(size).ToListAsync();
         }
 
         public void Remover(Tarefa tarefa)

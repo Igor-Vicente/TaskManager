@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using TaskManager.Application.Commands;
 using TaskManager.Application.Queries;
 using TaskManager.Domain.Abstractions;
+using TaskManager.Domain.Enums;
 using TaskManager.Presentation.Configuration;
 using TaskManager.Presentation.ViewModels;
 
@@ -35,9 +36,9 @@ namespace TaskManager.Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ObterTarefas(uint pgIndex = 1, uint pageSize = 10)
+        public async Task<IActionResult> ObterTarefas(int pgIndex = 1, int pageSize = 20, Status? status = null)
         {
-            var tarefas = await _tarefaQueries.ObterTarefasAsync((int)pgIndex, (int)pageSize);
+            var tarefas = await _tarefaQueries.ObterTarefasAsync(Math.Max(1, pgIndex), Math.Clamp(pageSize, 1, 50), status);
 
             return Ok(tarefas.ToResponseTarefaViewModel());
         }
