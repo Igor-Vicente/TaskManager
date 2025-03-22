@@ -1,27 +1,20 @@
 # Task Manager
 
-![Task Manager Screenshot](https://raw.githubusercontent.com/Igor-Vicente/TaskManager/refs/heads/main/img/taskmanager.png)
 
-A simple yet effective task management application.
-
-## Table of Contents
-
-- [Task Manager](#task-manager)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Docker (Recommended)](#docker-recommended)
-    - [Local Setup (Without Docker)](#local-setup-without-docker)
-  - [Running Unit Tests](#running-unit-tests)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Docker (Recommended)](#docker-recommended)
+  - [Local Setup (Without Docker)](#local-setup-without-docker)
+- [Running Unit Tests](#running-unit-tests)
 
 ## Features
 
 - Create, read, update, and delete tasks (CRUD operations).
 - User-friendly interface.
 - Database persistence (SQL Server).
-- API-driven backend.
-- Responsive design.
+- Mediator.
+- Docker & docker compose.
 
 ## Getting Started
 
@@ -43,7 +36,7 @@ This application is containerized using Docker Compose for easy setup.
 1.  **Clone the Repository:**
 
     ```bash
-    git clone [https://github.com/Igor-Vicente/TaskManager.git](https://www.google.com/search?q=https://github.com/Igor-Vicente/TaskManager.git)
+    git clone https://github.com/Igor-Vicente/TaskManager.git
     cd TaskManager
     ```
 
@@ -67,7 +60,7 @@ This application is containerized using Docker Compose for easy setup.
 1.  **Clone the Repository:**
 
     ```bash
-    git clone [https://github.com/Igor-Vicente/TaskManager.git](https://www.google.com/search?q=https://github.com/Igor-Vicente/TaskManager.git)
+    git clone https://github.com/Igor-Vicente/TaskManager.git
     cd TaskManager
     ```
 
